@@ -45,12 +45,12 @@ class InspectorState implements AstroState, AppStateErrorHandling {
 
   /// Convenience getters to safely extract the current selected state and
   /// previous state from the [missionReports]
-  JsonMap get selectedState =>
-      (selectedIndex == null) ? {} : missionReports[selectedIndex!]['state'];
-  Map<String, dynamic> get previousState =>
-      (selectedIndex == null || selectedIndex == 0)
-          ? {}
-          : missionReports[selectedIndex! - 1]['state'];
+  JsonMap get selectedState => (selectedIndex == null)
+      ? {}
+      : missionReports[selectedIndex!]['state'] as JsonMap;
+  JsonMap get previousState => (selectedIndex == null || selectedIndex == 0)
+      ? {}
+      : missionReports[selectedIndex! - 1]['state'] as JsonMap;
 
   @override
   InspectorState copyWith(

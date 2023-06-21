@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class TreeController {
-  TreeController({allNodesExpanded = true})
+  TreeController({bool allNodesExpanded = true})
       : _allNodesExpanded = allNodesExpanded;
 
   bool _allNodesExpanded;

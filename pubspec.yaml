@@ -9,33 +9,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  collection: ^1.16.0
-  astro:
-    git:
-      url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/astro
-  astro_types:
-    git:
-      url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/astro_types
-  astro_locator:
-    git:
-      url: https://github.com/enspyrco/monorepo.git
-      path: packages/dart/utils/astro_locator
-  astro_error_handling:
-    git:
-      url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/astro_error_handling
+  collection: ^1.17.1
+  astro_core: ^0.0.0-a1
+  astro_types: ^0.0.0-a1
+  astro_locator: ^0.0.0-a1
+  astro_error_handling: ^0.0.0-a1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
-  test: ^1.21.4
-  astro_test_utils:
-    git:
-      url: https://github.com/enspyrco/monorepo.git
-      path: packages/flutter/utils/astro_test_utils
+  enspyr_lints: ^0.0.0-a1
+  astro_test_utils: ^0.0.0-a1
 
 flutter:
    fonts:

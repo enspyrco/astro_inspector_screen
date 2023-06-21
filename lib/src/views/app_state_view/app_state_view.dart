@@ -1,4 +1,4 @@
-import 'package:astro/astro.dart';
+import 'package:astro_core/astro_core.dart';
 import 'package:flutter/material.dart';
 
 import '../../icons/icons.dart' as icons;
@@ -55,7 +55,7 @@ class AppStateView extends StatelessWidget {
                 toTreeNodes(
                   element,
                   previousJson == null ||
-                          previousJson.isEmpty ||
+                          (previousJson as List).isEmpty ||
                           i >= previousJson.length
                       ? null
                       : previousJson.elementAt(i),

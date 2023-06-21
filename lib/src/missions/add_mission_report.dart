@@ -13,7 +13,7 @@ class AddMissionReport extends LandingMission<InspectorState> {
 
   final JsonMap _missionReportJson;
 
-  int get missionId => _missionReportJson['mission']['id_'];
+  int get missionId => _missionReportJson['mission']['id_'] as int;
 
   JsonMap get eventJson => JsonMap.unmodifiable(_missionReportJson);
 

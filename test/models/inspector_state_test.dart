@@ -1,5 +1,5 @@
 import 'package:astro_inspector_screen/src/state/inspector_state.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('InspectorState.addMissionReport throws on invalid input', () {

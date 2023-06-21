@@ -1,4 +1,4 @@
-import 'package:astro/astro.dart';
+import 'package:astro_core/astro_core.dart';
 import 'package:astro_types/json_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -28,9 +28,9 @@ class MissionsHistoryView extends StatelessWidget {
                           return Container();
                         }
                         return MissionsHistoryItem(
-                          missionName: missionData['name_'],
-                          missionType: missionData['type_'],
-                          missionState: missionData['state_'],
+                          missionName: missionData['name_'] as String,
+                          missionType: missionData['type_'] as String,
+                          missionState: missionData['state_'] as JsonMap,
                           index: index,
                         );
                       });

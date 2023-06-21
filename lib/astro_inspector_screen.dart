@@ -1,12 +1,12 @@
 library astro_inspector_screen;
 
-import 'package:astro/astro.dart';
-import 'package:astro_inspector_screen/astro_inspector_screen.dart';
+import 'package:astro_core/astro_core.dart';
 import 'package:astro_locator/astro_locator.dart';
 import 'package:astro_types/core_types.dart';
 import 'package:astro_types/json_types.dart';
 import 'package:flutter/widgets.dart';
 
+import 'astro_inspector_screen.dart';
 import 'src/views/main_view.dart';
 
 export 'initialize_astro_inspector.dart';
