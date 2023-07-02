@@ -1,4 +1,4 @@
-# astro_inspector_screen
+# inspector_for_perception
 
 *A widget for visualising state change in apps using astro.*
 

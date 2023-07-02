@@ -1,4 +1,4 @@
-name: astro_inspector_screen
+name: inspector_for_perception
 description: A widget for visualising state change in apps using astro.
 version: 0.0.0-a1
 publish_to: none

@@ -6,7 +6,7 @@ import 'package:astro_types/core_types.dart';
 import 'package:astro_types/json_types.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../astro_inspector_screen.dart';
+import '../../inspector_for_perception.dart';
 import '../missions/add_mission_report.dart';
 import '../missions/remove_all.dart';
 import 'app_state_view/app_state_view.dart';

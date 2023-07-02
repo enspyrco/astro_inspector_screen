@@ -3,7 +3,7 @@ import 'package:astro_types/json_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../../astro_inspector_screen.dart';
+import '../../../inspector_for_perception.dart';
 import 'missions_history_item.dart';
 
 class MissionsHistoryView extends StatelessWidget {

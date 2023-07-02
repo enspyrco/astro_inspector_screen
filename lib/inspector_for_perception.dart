@@ -1,4 +1,4 @@
-library astro_inspector_screen;
+library inspector_for_perception;
 
 import 'package:astro_core/astro_core.dart';
 import 'package:astro_locator/astro_locator.dart';
@@ -6,10 +6,10 @@ import 'package:astro_types/core_types.dart';
 import 'package:astro_types/json_types.dart';
 import 'package:flutter/widgets.dart';
 
-import 'astro_inspector_screen.dart';
+import 'inspector_for_perception.dart';
 import 'src/views/main_view.dart';
 
-export 'initialize_astro_inspector.dart';
+export 'initialize_inspector_for_perception.dart';
 export 'src/missions/parenting_mission_control.dart';
 export 'src/state/inspector_state.dart';
 export 'src/system-checks/send_mission_reports_to_inspector.dart';

@@ -1,4 +1,4 @@
-import 'package:astro_inspector_screen/astro_inspector_screen.dart';
+import 'package:inspector_for_perception/inspector_for_perception.dart';
 import 'package:astro_types/core_types.dart';
 
 class TestAwayMission extends AwayMission<InspectorState> {

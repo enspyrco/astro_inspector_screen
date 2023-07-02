@@ -1,4 +1,4 @@
-import 'package:astro_inspector_screen/src/state/inspector_state.dart';
+import 'package:inspector_for_perception/src/state/inspector_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
