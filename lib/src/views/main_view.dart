@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:astro_error_handling/astro_error_handling.dart';
-import 'package:astro_locator/astro_locator.dart';
-import 'package:astro_types/core_types.dart';
-import 'package:astro_types/json_types.dart';
+import 'package:error_handling_for_perception/error_handling_for_perception.dart';
+import 'package:locator_for_perception/locator_for_perception.dart';
+import 'package:types_for_perception/core_types.dart';
+import 'package:types_for_perception/json_types.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../inspector_for_perception.dart';

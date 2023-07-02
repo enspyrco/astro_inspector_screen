@@ -1,5 +1,5 @@
-import 'package:astro_core/astro_core.dart';
-import 'package:astro_types/json_types.dart';
+import 'package:core_of_perception/core_of_perception.dart';
+import 'package:types_for_perception/json_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

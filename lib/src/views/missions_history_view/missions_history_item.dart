@@ -1,6 +1,6 @@
-import 'package:astro_core/astro_core.dart';
-import 'package:astro_locator/astro_locator.dart';
-import 'package:astro_types/core_types.dart';
+import 'package:core_of_perception/core_of_perception.dart';
+import 'package:locator_for_perception/locator_for_perception.dart';
+import 'package:types_for_perception/core_types.dart';
 import 'package:flutter/material.dart';
 
 import '../../missions/select_mission.dart';

@@ -1,4 +1,4 @@
-import 'package:astro_core/astro_core.dart';
+import 'package:core_of_perception/core_of_perception.dart';
 import 'package:flutter/material.dart';
 
 import '../../icons/icons.dart' as icons;

@@ -1,5 +1,5 @@
-import 'package:astro_types/core_types.dart';
-import 'package:astro_types/json_types.dart';
+import 'package:types_for_perception/core_types.dart';
+import 'package:types_for_perception/json_types.dart';
 
 import '../state/inspector_state.dart';
 import 'select_mission.dart';

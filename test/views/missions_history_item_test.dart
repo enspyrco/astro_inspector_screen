@@ -2,8 +2,8 @@ import 'package:inspector_for_perception/inspector_for_perception.dart';
 import 'package:inspector_for_perception/src/missions/add_mission_report.dart';
 import 'package:inspector_for_perception/src/missions/select_mission.dart';
 import 'package:inspector_for_perception/src/views/missions_history_view/missions_history_item.dart';
-import 'package:astro_test_utils/astro_widgets_test_utils.dart';
-import 'package:astro_types/json_types.dart';
+import 'package:test_utils_for_perception/astro_widgets_test_utils.dart';
+import 'package:types_for_perception/json_types.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../models/test_away_mission.dart';

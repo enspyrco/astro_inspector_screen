@@ -1,4 +1,4 @@
-import 'package:astro_types/core_types.dart';
+import 'package:types_for_perception/core_types.dart';
 
 import '../enums/lineage_shape.dart';
 import '../state/inspector_state.dart';
