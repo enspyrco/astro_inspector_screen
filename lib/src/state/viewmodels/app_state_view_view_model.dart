@@ -1,4 +1,4 @@
-import 'package:types_for_perception/json_types.dart';
+import 'package:json_utils/json_utils.dart';
 
 /// ViewModel class for the [AppStateView] widget
 class AppStateViewViewModel {

@@ -1,7 +1,7 @@
 import 'package:core_of_perception/core_of_perception.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
-import 'package:types_for_perception/core_types.dart';
 import 'package:flutter/material.dart';
+import 'package:types_for_perception/beliefs.dart';
 
 import '../../missions/select_mission.dart';
 import '../../state/inspector_state.dart';

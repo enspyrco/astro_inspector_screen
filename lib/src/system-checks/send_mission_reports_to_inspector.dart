@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:types_for_perception/core_types.dart';
-import 'package:types_for_perception/json_types.dart';
-import 'package:types_for_perception/state_types.dart';
+import 'package:json_utils/json_utils.dart';
+import 'package:types_for_perception/beliefs.dart';
 
-class SendMissionReportsToInspector<T extends AstroState>
+class SendMissionReportsToInspector<T extends CoreBeliefs>
     extends SystemCheck<T> {
   final StreamController<JsonMap> _controller =
       StreamController<JsonMap>.broadcast();

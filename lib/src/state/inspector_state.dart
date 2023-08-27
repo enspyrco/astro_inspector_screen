@@ -1,14 +1,14 @@
 import 'package:error_handling_for_perception/error_handling_for_perception.dart';
+import 'package:json_utils/json_utils.dart';
+import 'package:types_for_perception/beliefs.dart';
 import 'package:types_for_perception/error_handling_types.dart';
-import 'package:types_for_perception/json_types.dart';
-import 'package:types_for_perception/state_types.dart';
 import 'package:collection/collection.dart';
 
 import '../enums/lineage_shape.dart';
 
 /// The AppState for astro, named differently as the [AstroInspectorScreen] is
 /// for visualising the AppState of apps.
-class InspectorState implements AstroState, AppStateErrorHandling {
+class InspectorState implements CoreBeliefs, AppStateErrorHandling {
   InspectorState(
       {required this.error,
       required this.missionReports,

@@ -12,19 +12,31 @@ dependencies:
   
   collection: ^1.17.1
   
-  core_of_perception: ^0.0.0-a1
-  error_handling_for_perception: ^0.0.0-a1
-  locator_for_perception: ^0.0.0-a1
-  types_for_perception: ^0.0.0-a1
+  core_of_perception:
+    git: https://github.com/enspyrco/core_of_perception
+  types_for_perception:
+    git: https://github.com/enspyrco/types_for_perception
+  locator_for_perception:
+    git: https://github.com/enspyrco/locator_for_perception
+  error_handling_for_perception:
+    git: https://github.com/enspyrco/error_handling_for_perception
+
+  types_for_auth:
+    git: https://github.com/enspyrco/types_for_auth
+  json_utils:
+    git: https://github.com/enspyrco/json_utils
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  enspyr_lints: ^0.0.0-a1
-  test_utils_for_perception: ^0.0.0-a1
+  enspyr_lints:
+    git: https://github.com/enspyrco/enspyr_lints
+  test_utils_for_perception:
+    git: https://github.com/enspyrco/test_utils_for_perception
 
 flutter:
    fonts:
     - family:  IconsFontFamily
       fonts:
-       - asset: fonts/IconsFont.ttf
+       - asset: fonts/IconsFont.ttf  
+  

@@ -1,5 +1,5 @@
-import 'package:types_for_perception/core_types.dart';
-import 'package:types_for_perception/json_types.dart';
+import 'package:json_utils/json_utils.dart';
+import 'package:types_for_perception/beliefs.dart';
 
 import '../state/inspector_state.dart';
 import 'select_mission.dart';
@@ -13,7 +13,7 @@ class AddMissionReport extends LandingMission<InspectorState> {
 
   final JsonMap _missionReportJson;
 
-  int get missionId => _missionReportJson['mission']['id_'] as int;
+  int get missionId => (_missionReportJson['mission'] as JsonMap)['id_'] as int;
 
   JsonMap get eventJson => JsonMap.unmodifiable(_missionReportJson);
 

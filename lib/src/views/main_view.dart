@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:error_handling_for_perception/error_handling_for_perception.dart';
+import 'package:json_utils/json_utils.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
-import 'package:types_for_perception/core_types.dart';
-import 'package:types_for_perception/json_types.dart';
 import 'package:flutter/widgets.dart';
+import 'package:types_for_perception/beliefs.dart';
 
 import '../../inspector_for_perception.dart';
 import '../missions/add_mission_report.dart';

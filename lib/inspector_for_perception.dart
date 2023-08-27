@@ -1,10 +1,10 @@
 library inspector_for_perception;
 
 import 'package:core_of_perception/core_of_perception.dart';
+import 'package:json_utils/json_utils.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
-import 'package:types_for_perception/core_types.dart';
-import 'package:types_for_perception/json_types.dart';
 import 'package:flutter/widgets.dart';
+import 'package:types_for_perception/beliefs.dart';
 
 import 'inspector_for_perception.dart';
 import 'src/views/main_view.dart';

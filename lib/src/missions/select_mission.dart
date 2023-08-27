@@ -1,4 +1,5 @@
-import 'package:types_for_perception/core_types.dart';
+import 'package:json_utils/json_utils.dart';
+import 'package:types_for_perception/beliefs.dart';
 
 import '../enums/lineage_shape.dart';
 import '../state/inspector_state.dart';
@@ -34,7 +35,8 @@ InspectorState updateSelectedAndLineage(InspectorState state, int index) {
   // Process the selected mission
   lineageFor[index] = LineageShape.endpoint;
   int currentIndex = index;
-  var parentId = state.missionReports[currentIndex]['mission']['parent_'];
+  var parentId =
+      (state.missionReports[currentIndex]['mission'] as JsonMap)['parent_'];
   if (parentId == null) {
     // if first mission is selected parent is null
     return state.copyWith(selectedIndex: index, lineageFor: {});
@@ -43,7 +45,8 @@ InspectorState updateSelectedAndLineage(InspectorState state, int index) {
 
   // Move to the parent and process the mission until there is no parent
   while (true) {
-    parentId = state.missionReports[currentIndex]['mission']['parent_'];
+    parentId =
+        (state.missionReports[currentIndex]['mission'] as JsonMap)['parent_'];
 
     if (parentId == null) {
       lineageFor[currentIndex] = LineageShape.origin;

@@ -1,8 +1,7 @@
-import 'package:types_for_perception/core_types.dart';
-import 'package:types_for_perception/json_types.dart';
-import 'package:types_for_perception/state_types.dart';
+import 'package:json_utils/json_utils.dart';
+import 'package:types_for_perception/beliefs.dart';
 
-class ParentedLandingMission<S extends AstroState>
+class ParentedLandingMission<S extends CoreBeliefs>
     implements LandingMission<S> {
   ParentedLandingMission(this._mission, this.parent);
 
@@ -25,7 +24,7 @@ class ParentedLandingMission<S extends AstroState>
   S landingInstructions(S state) => _mission.landingInstructions(state);
 }
 
-class ParentedAwayMission<S extends AstroState> implements AwayMission<S> {
+class ParentedAwayMission<S extends CoreBeliefs> implements AwayMission<S> {
   ParentedAwayMission(this._mission, this.parent);
 
   // The inner mission, wrapped by this class

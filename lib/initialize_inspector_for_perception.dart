@@ -1,10 +1,9 @@
 import 'package:locator_for_perception/locator_for_perception.dart';
-import 'package:types_for_perception/core_types.dart';
-import 'package:types_for_perception/state_types.dart';
+import 'package:types_for_perception/beliefs.dart';
 
 import 'src/system-checks/send_mission_reports_to_inspector.dart';
 
-void initializeAstroInspector<S extends AstroState>() {
+void initializeAstroInspector<S extends CoreBeliefs>() {
   if (const bool.fromEnvironment('IN-APP-ASTRO-INSPECTOR')) {
     /// Create a SystemCheck that sends mission updates to the Inspector
     final sendMissionReports = SendMissionReportsToInspector<S>();

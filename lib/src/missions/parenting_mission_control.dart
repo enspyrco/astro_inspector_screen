@@ -1,5 +1,4 @@
-import 'package:types_for_perception/core_types.dart';
-import 'package:types_for_perception/state_types.dart';
+import 'package:types_for_perception/beliefs.dart';
 
 import 'parented_missions.dart';
 
@@ -9,7 +8,7 @@ import 'parented_missions.dart';
 ///
 /// The call to `launch` & `land` is just passed on to [MissionControl.launch] &
 /// [MissionControl.land], while setting the `parent` member of the mission.
-class ParentingMissionControl<S extends AstroState>
+class ParentingMissionControl<S extends CoreBeliefs>
     implements MissionControl<S> {
   ParentingMissionControl(
       MissionControl<S> missionControl, AwayMission<S> currentMission)

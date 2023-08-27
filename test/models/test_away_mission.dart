@@ -1,5 +1,5 @@
 import 'package:inspector_for_perception/inspector_for_perception.dart';
-import 'package:types_for_perception/core_types.dart';
+import 'package:types_for_perception/beliefs.dart';
 
 class TestAwayMission extends AwayMission<InspectorState> {
   @override
