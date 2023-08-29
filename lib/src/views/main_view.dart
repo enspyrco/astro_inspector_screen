@@ -1,20 +1,20 @@
 import 'dart:async';
 
-import 'package:error_handling_for_perception/error_handling_for_perception.dart';
+import 'package:error_correction_in_perception/error_correction_in_perception.dart';
 import 'package:json_utils/json_utils.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
 import 'package:flutter/widgets.dart';
-import 'package:types_for_perception/beliefs.dart';
+import 'package:abstractions/beliefs.dart';
 
-import '../../inspector_for_perception.dart';
-import '../missions/add_mission_report.dart';
-import '../missions/remove_all.dart';
+import '../../introspection.dart';
+import '../cognition/add_cognitive_process.dart';
+import '../cognition/remove_all.dart';
 import 'app_state_view/app_state_view.dart';
-import 'missions_history_view/missions_history_view.dart';
+import 'cognition_history/cognition_history_view.dart';
 
-/// The [MainView] lays out the [MissionsHistoryView] and [AppStateView].
+/// The [MainView] lays out the [CognitionHistoryView] and [AppStateView].
 ///
-/// The [MainView] takes a [Stream] of mission updates from [MissionControl],
+/// The [MainView] takes a [Stream] of mission updates from [BeliefSystem],
 /// listens to the stream and starts an appropriate Mission (as we are also
 /// using astro for our state management) for each incoming event.
 class MainView extends StatefulWidget {
@@ -37,14 +37,14 @@ class _MainViewState extends State<MainView> {
       _subscription = widget._onMissionReport!.listen(
         (update) {
           if (update['type'] == 'astro:mission_update') {
-            locate<MissionControl<InspectorState>>()
-                .land(AddMissionReport(update['data'] as JsonMap));
+            locate<BeliefSystem<IntrospectionBeliefs>>()
+                .conclude(AddCognitiveProcess(update['data'] as JsonMap));
           } else if (update['type'] == 'astro:remove_all') {
-            locate<MissionControl<InspectorState>>().land(RemoveAll());
+            locate<BeliefSystem<IntrospectionBeliefs>>().conclude(RemoveAll());
           }
         },
         onError: (Object error, StackTrace trace) =>
-            locate<MissionControl<InspectorState>>().land(
+            locate<BeliefSystem<IntrospectionBeliefs>>().conclude(
           CreateErrorReport(error, trace),
         ),
       );
@@ -63,7 +63,7 @@ class _MainViewState extends State<MainView> {
         ? const Text('Not connected to app...')
         : Row(
             children: [
-              const MissionsHistoryView(),
+              const CognitionHistoryView(),
               AppStateView(),
             ],
           );

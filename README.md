@@ -1,6 +1,6 @@
-# inspector_for_perception
+# introspection
 
-*A widget for visualising state change in apps using astro.*
+*A widget for visualising belief updating in apps using perception.*
 
 ## Features
 

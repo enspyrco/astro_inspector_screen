@@ -1,23 +1,23 @@
-import 'package:error_handling_for_perception/error_handling_for_perception.dart';
+import 'package:error_correction_in_perception/error_correction_in_perception.dart';
 import 'package:json_utils/json_utils.dart';
-import 'package:types_for_perception/beliefs.dart';
-import 'package:types_for_perception/error_handling_types.dart';
+import 'package:abstractions/beliefs.dart';
+import 'package:abstractions/error_correction.dart';
 import 'package:collection/collection.dart';
 
 import '../enums/lineage_shape.dart';
 
 /// The AppState for astro, named differently as the [AstroInspectorScreen] is
 /// for visualising the AppState of apps.
-class InspectorState implements CoreBeliefs, AppStateErrorHandling {
-  InspectorState(
+class IntrospectionBeliefs implements CoreBeliefs, ErrorCorrectionConcept {
+  IntrospectionBeliefs(
       {required this.error,
       required this.missionReports,
       required this.selectedIndex,
       required this.lineageFor,
       required this.indexFor});
 
-  static InspectorState get initial => InspectorState(
-        error: DefaultErrorHandlingState.initial,
+  static IntrospectionBeliefs get initial => IntrospectionBeliefs(
+        error: DefaultErrorCorrectionBeliefs.initial,
         missionReports: UnmodifiableListView([]),
         selectedIndex: null,
         lineageFor: UnmodifiableMapView({}),
@@ -27,10 +27,10 @@ class InspectorState implements CoreBeliefs, AppStateErrorHandling {
   /// If there are errors (eg. decoding invalid json) we save an error message
   /// that the screen will display
   @override
-  final DefaultErrorHandlingState error;
+  final DefaultErrorCorrectionBeliefs error;
 
-  /// The list of mission updates, added to each time [MissionControl.launch] or
-  /// [MissionControl.land] is called
+  /// The list of mission updates, added to each time [BeliefSystem.consider] or
+  /// [BeliefSystem.conclude] is called
   final List<JsonMap> missionReports;
 
   /// [selectedIndex] is a nullable int, as 'nothing selected' is a valid state
@@ -53,13 +53,13 @@ class InspectorState implements CoreBeliefs, AppStateErrorHandling {
       : missionReports[selectedIndex! - 1]['state'] as JsonMap;
 
   @override
-  InspectorState copyWith(
-      {DefaultErrorHandlingState? error,
+  IntrospectionBeliefs copyWith(
+      {DefaultErrorCorrectionBeliefs? error,
       List<JsonMap>? missionReports,
       int? selectedIndex,
       Map<int, LineageShape>? lineageFor,
       Map<int, int>? indexFor}) {
-    return InspectorState(
+    return IntrospectionBeliefs(
         error: error ?? this.error,
         missionReports: missionReports ?? this.missionReports,
         selectedIndex: selectedIndex ?? this.selectedIndex,

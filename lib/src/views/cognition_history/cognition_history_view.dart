@@ -1,13 +1,13 @@
-import 'package:core_of_perception/core_of_perception.dart';
+import 'package:percepts/percepts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:json_utils/json_utils.dart';
 
-import '../../../inspector_for_perception.dart';
-import 'missions_history_item.dart';
+import '../../../introspection.dart';
+import 'cognition_history_item.dart';
 
-class MissionsHistoryView extends StatelessWidget {
-  const MissionsHistoryView({super.key});
+class CognitionHistoryView extends StatelessWidget {
+  const CognitionHistoryView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,8 @@ class MissionsHistoryView extends StatelessWidget {
         Expanded(
           child: SizedBox(
             width: 300,
-            child: OnStateChangeBuilder<InspectorState, List<JsonMap>>(
-                transformer: (state) => state.missionReports,
+            child: StreamOfConsciousness<IntrospectionBeliefs, List<JsonMap>>(
+                infer: (state) => state.missionReports,
                 builder: (context, missionReports) {
                   return ListView.builder(
                       itemCount: missionReports.length,
@@ -28,7 +28,7 @@ class MissionsHistoryView extends StatelessWidget {
                         if (missionData == null) {
                           return Container();
                         }
-                        return MissionsHistoryItem(
+                        return CognitionHistoryItem(
                           missionName: missionData['name_'] as String? ?? '',
                           missionType: missionData['type_'] as String? ?? '',
                           missionState: missionData['state_'] as JsonMap? ?? {},

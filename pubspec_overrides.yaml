@@ -1,15 +1,15 @@
 dependency_overrides:
 # where are we? flutter/utils/perception/<here>
-  # core_of_perception:
-  #   path: ../core_of_perception
-  # types_for_perception:
-  #   path: ../types_for_perception
+  # percepts:
+  #   path: ../percepts
+  # abstractions:
+  #   path: ../abstractions
   # locator_for_perception:
   #   path: ../locator_for_perception
   # test_utils_for_perception:
   #   path: ../test_utils_for_perception
-  # error_handling_for_perception:
-  #   path: ../error_handling_for_perception
+  # error_correction_in_perception:
+  #   path: ../error_correction_in_perception
 
   # enspyr_lints:
   #   path: 

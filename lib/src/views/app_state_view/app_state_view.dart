@@ -1,8 +1,8 @@
-import 'package:core_of_perception/core_of_perception.dart';
+import 'package:percepts/percepts.dart';
 import 'package:flutter/material.dart';
 
 import '../../icons/icons.dart' as icons;
-import '../../state/inspector_state.dart';
+import '../../state/introspection_beliefs.dart';
 import '../../state/viewmodels/app_state_view_view_model.dart';
 import 'state_tree/key_provider.dart';
 import 'state_tree/primitives/tree_controller.dart';
@@ -17,8 +17,8 @@ class AppStateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OnStateChangeBuilder<InspectorState, AppStateViewViewModel>(
-        transformer: (state) =>
+    return StreamOfConsciousness<IntrospectionBeliefs, AppStateViewViewModel>(
+        infer: (state) =>
             AppStateViewViewModel(state.selectedState, state.previousState),
         builder: (context, vm) {
           return Center(

@@ -1,10 +1,10 @@
 import 'package:json_utils/json_utils.dart';
-import 'package:types_for_perception/beliefs.dart';
+import 'package:abstractions/beliefs.dart';
 
 import '../enums/lineage_shape.dart';
-import '../state/inspector_state.dart';
+import '../state/introspection_beliefs.dart';
 
-class SelectMission extends LandingMission<InspectorState> {
+class SelectMission extends Conclusion<IntrospectionBeliefs> {
   final int _index;
 
   SelectMission(this._index);
@@ -13,8 +13,7 @@ class SelectMission extends LandingMission<InspectorState> {
 
   /// Select a list item and also identify the appropriate lineage to be drawn.
   @override
-  InspectorState landingInstructions(state) =>
-      updateSelectedAndLineage(state, index);
+  IntrospectionBeliefs update(state) => updateSelectedAndLineage(state, index);
 
   @override
   toJson() => {
@@ -29,7 +28,8 @@ class SelectMission extends LandingMission<InspectorState> {
 /// are either a `connection` (one of the missions in the the lineage) or
 /// `notConnection` (not in the sequence). Any items beyond the origin have
 /// `null` and do not have any lineage drawn.
-InspectorState updateSelectedAndLineage(InspectorState state, int index) {
+IntrospectionBeliefs updateSelectedAndLineage(
+    IntrospectionBeliefs state, int index) {
   var lineageFor = <int, LineageShape>{};
 
   // Process the selected mission

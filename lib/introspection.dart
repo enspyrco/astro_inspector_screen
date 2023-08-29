@@ -1,21 +1,21 @@
-library inspector_for_perception;
+library introspection;
 
-import 'package:core_of_perception/core_of_perception.dart';
+import 'package:percepts/percepts.dart';
 import 'package:json_utils/json_utils.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
 import 'package:flutter/widgets.dart';
-import 'package:types_for_perception/beliefs.dart';
+import 'package:abstractions/beliefs.dart';
 
-import 'inspector_for_perception.dart';
+import 'introspection.dart';
 import 'src/views/main_view.dart';
 
-export 'initialize_inspector_for_perception.dart';
-export 'src/missions/parenting_mission_control.dart';
-export 'src/state/inspector_state.dart';
-export 'src/system-checks/send_mission_reports_to_inspector.dart';
+export 'initialize_introspection.dart';
+export 'src/cognition/parenting_belief_system.dart';
+export 'src/state/introspection_beliefs.dart';
+export 'src/habits/introspection_habit.dart';
 
 /// Visualise the data flow of an app by adding a [AstroInspectorScreen] widget
-/// and passing in the [_onMissionReport] stream from the astro [MissionControl].
+/// and passing in the [_onMissionReport] stream from the astro [BeliefSystem].
 /// When used by the Inspector plugin, `serviceManager.service?.onExtensionEvent`
 /// is transformed to a Stream<ReduxStateEvent>.
 ///
@@ -36,8 +36,9 @@ class _AstroInspectorScreenState extends State<AstroInspectorScreen> {
   @override
   void initState() {
     super.initState();
-    Locator.add<MissionControl<InspectorState>>(
-        DefaultMissionControl<InspectorState>(state: InspectorState.initial));
+    Locator.add<BeliefSystem<IntrospectionBeliefs>>(
+        DefaultBeliefSystem<IntrospectionBeliefs>(
+            state: IntrospectionBeliefs.initial));
   }
 
   @override

@@ -1,14 +1,14 @@
-import 'package:core_of_perception/core_of_perception.dart';
+import 'package:percepts/percepts.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
 import 'package:flutter/material.dart';
-import 'package:types_for_perception/beliefs.dart';
+import 'package:abstractions/beliefs.dart';
 
-import '../../missions/select_mission.dart';
-import '../../state/inspector_state.dart';
+import '../../cognition/select_mission.dart';
+import '../../state/introspection_beliefs.dart';
 import '../../state/viewmodels/mission_history_item_view_model.dart';
 
-class MissionsHistoryItem extends StatelessWidget {
-  const MissionsHistoryItem({
+class CognitionHistoryItem extends StatelessWidget {
+  const CognitionHistoryItem({
     Key? key,
     required this.missionName,
     required this.missionType,
@@ -25,8 +25,8 @@ class MissionsHistoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var isAsync = missionType == 'async';
 
-    return OnStateChangeBuilder<InspectorState, MissionHistoryItemViewModel>(
-        transformer: (state) {
+    return StreamOfConsciousness<IntrospectionBeliefs,
+        MissionHistoryItemViewModel>(infer: (state) {
       return MissionHistoryItemViewModel(
           index == state.selectedIndex, state.lineageFor[index]?.shapeWidgets);
     }, builder: (context, vm) {
@@ -51,8 +51,8 @@ class MissionsHistoryItem extends StatelessWidget {
                   subtitle: vm.isSelected
                       ? Text(missionState.toString())
                       : Container(),
-                  onTap: () => locate<MissionControl<InspectorState>>()
-                      .land(SelectMission(index)),
+                  onTap: () => locate<BeliefSystem<IntrospectionBeliefs>>()
+                      .conclude(SelectMission(index)),
                   tileColor: isAsync ? Colors.green[50] : Colors.blue[50]),
             ),
           ),
