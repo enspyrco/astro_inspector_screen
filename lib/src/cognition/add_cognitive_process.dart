@@ -19,7 +19,7 @@ class AddCognitiveProcess extends Conclusion<IntrospectionBeliefs> {
   JsonMap get eventJson => JsonMap.unmodifiable(_cognitiveProcessJson);
 
   @override
-  IntrospectionBeliefs update(beliefs) {
+  IntrospectionBeliefs conclude(beliefs) {
     var newState = beliefs.copyWith(
         missionReports: [...beliefs.missionReports, eventJson],
         selectedIndex: beliefs.missionReports.length,

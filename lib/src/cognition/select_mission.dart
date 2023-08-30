@@ -13,7 +13,8 @@ class SelectMission extends Conclusion<IntrospectionBeliefs> {
 
   /// Select a list item and also identify the appropriate lineage to be drawn.
   @override
-  IntrospectionBeliefs update(state) => updateSelectedAndLineage(state, index);
+  IntrospectionBeliefs conclude(state) =>
+      updateSelectedAndLineage(state, index);
 
   @override
   toJson() => {

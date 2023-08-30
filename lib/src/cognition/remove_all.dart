@@ -6,7 +6,7 @@ import '../state/introspection_beliefs.dart';
 /// `remove_all` event to reset the Inspector Screen.
 class RemoveAll extends Conclusion<IntrospectionBeliefs> {
   @override
-  IntrospectionBeliefs update(state) =>
+  IntrospectionBeliefs conclude(state) =>
       state.copyWith(selectedIndex: null, missionReports: []);
 
   @override

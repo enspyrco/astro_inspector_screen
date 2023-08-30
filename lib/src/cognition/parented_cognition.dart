@@ -20,7 +20,7 @@ class ParentedConclusion<S extends CoreBeliefs> implements Conclusion<S> {
       };
 
   @override
-  S update(S state) => _conclusion.update(state);
+  S conclude(S state) => _conclusion.conclude(state);
 }
 
 class ParentedConsideration<S extends CoreBeliefs> implements Consideration<S> {
@@ -42,6 +42,6 @@ class ParentedConsideration<S extends CoreBeliefs> implements Consideration<S> {
       };
 
   @override
-  Future<void> process(BeliefSystem<S> beliefSystem) =>
-      _consideration.process(beliefSystem);
+  Future<void> consider(BeliefSystem<S> beliefSystem) =>
+      _consideration.consider(beliefSystem);
 }
