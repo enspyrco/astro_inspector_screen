@@ -14,25 +14,25 @@ export 'src/cognition/parenting_belief_system.dart';
 export 'src/state/introspection_beliefs.dart';
 export 'src/habits/introspection_habit.dart';
 
-/// Visualise the data flow of an app by adding a [AstroInspectorScreen] widget
-/// and passing in the [_onMissionReport] stream from the astro [BeliefSystem].
-/// When used by the Inspector plugin, `serviceManager.service?.onExtensionEvent`
+/// Visualise the data flow of an app by adding a [IntrospectionScreen] widget
+/// and passing in the [_onCognition] stream from the [BeliefSystem].
+/// When used by the introspection plugin, `serviceManager.service?.onExtensionEvent`
 /// is transformed to a Stream<ReduxStateEvent>.
 ///
 /// At this time, an event is either
 /// - a 'mission update', consisting of the mission object and any corresponding
 ///   state change.
 /// - a 'remove all' event to clear the mission updates data.
-class AstroInspectorScreen extends StatefulWidget {
-  const AstroInspectorScreen(this._onMissionReport, {super.key});
+class IntrospectionScreen extends StatefulWidget {
+  const IntrospectionScreen(this._onCognition, {super.key});
 
-  final Stream<JsonMap>? _onMissionReport;
+  final Stream<JsonMap>? _onCognition;
 
   @override
-  State<AstroInspectorScreen> createState() => _AstroInspectorScreenState();
+  State<IntrospectionScreen> createState() => _IntrospectionScreenState();
 }
 
-class _AstroInspectorScreenState extends State<AstroInspectorScreen> {
+class _IntrospectionScreenState extends State<IntrospectionScreen> {
   @override
   void initState() {
     super.initState();
@@ -43,6 +43,6 @@ class _AstroInspectorScreenState extends State<AstroInspectorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MainView(widget._onMissionReport);
+    return MainView(widget._onCognition);
   }
 }

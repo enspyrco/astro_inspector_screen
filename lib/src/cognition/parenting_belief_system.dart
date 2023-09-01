@@ -28,5 +28,5 @@ class ParentingBeliefSystem<S extends CoreBeliefs> implements BeliefSystem<S> {
   Stream<S> get onBeliefUpdate => _beliefSystem.onBeliefUpdate;
 
   @override
-  S get state => _beliefSystem.state;
+  S get beliefs => _beliefSystem.beliefs;
 }

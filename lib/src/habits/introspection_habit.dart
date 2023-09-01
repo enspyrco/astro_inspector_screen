@@ -14,7 +14,7 @@ class IntrospectionHabit<T extends CoreBeliefs> extends Habit<T> {
     // each mission.
     _controller.add({
       'data': {
-        'state': beliefSystem.state.toJson(),
+        'state': beliefSystem.beliefs.toJson(),
         'mission': cognition.toJson()
           ..['id_'] = cognition.hashCode
           ..['type_'] = cognition is Consideration ? 'async' : 'sync'
