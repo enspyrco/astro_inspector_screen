@@ -24,7 +24,7 @@ void main() {
     );
 
     var harness = WidgetTestHarness(
-      initialState: IntrospectionBeliefs.initial,
+      initialBeliefs: IntrospectionBeliefs.initial,
       innerWidget: widgetUnderTest,
     );
 
@@ -40,7 +40,7 @@ void main() {
     /// Setup the [InspectorState] as if the inspected app launched a [TestAwayMission]
     /// The json injected into [AddMissionUpate] is created by the
     /// [SendMissionReportToInspector] system check.
-    harness.land(AddCognitiveProcess({
+    harness.conclude(AddCognitiveProcess({
       'state': IntrospectionBeliefs.initial.toJson(),
       'mission': ExampleConsideration().toJson()
         ..['id_'] = testMission.hashCode
@@ -51,7 +51,7 @@ void main() {
 
     // check that the expected mission was launched by the widget
     expect(
-        harness.recordedMissions, containsA<SelectMission>(withIndex: index));
+        harness.recordedCognitions, containsA<SelectMission>(withIndex: index));
   });
 }
 

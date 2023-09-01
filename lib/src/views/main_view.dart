@@ -45,7 +45,7 @@ class _MainViewState extends State<MainView> {
         },
         onError: (Object error, StackTrace trace) =>
             locate<BeliefSystem<IntrospectionBeliefs>>().conclude(
-          CreateErrorReport(error, trace),
+          CreateFeedback(error, trace),
         ),
       );
     }

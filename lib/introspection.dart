@@ -38,7 +38,7 @@ class _IntrospectionScreenState extends State<IntrospectionScreen> {
     super.initState();
     Locator.add<BeliefSystem<IntrospectionBeliefs>>(
         DefaultBeliefSystem<IntrospectionBeliefs>(
-            state: IntrospectionBeliefs.initial));
+            beliefs: IntrospectionBeliefs.initial));
   }
 
   @override
