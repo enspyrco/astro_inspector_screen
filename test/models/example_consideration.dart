@@ -1,5 +1,5 @@
-import 'package:introspection/introspection.dart';
 import 'package:abstractions/beliefs.dart';
+import 'package:introspection/src/beliefs/introspection_beliefs.dart';
 
 class ExampleConsideration extends Consideration<IntrospectionBeliefs> {
   @override

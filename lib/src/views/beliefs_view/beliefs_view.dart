@@ -2,24 +2,24 @@ import 'package:percepts/percepts.dart';
 import 'package:flutter/material.dart';
 
 import '../../icons/icons.dart' as icons;
-import '../../state/introspection_beliefs.dart';
-import '../../state/viewmodels/app_state_view_view_model.dart';
-import 'state_tree/key_provider.dart';
-import 'state_tree/primitives/tree_controller.dart';
-import 'state_tree/primitives/tree_node.dart';
-import 'state_tree/widgets/tree_view.dart';
+import '../../beliefs/introspection_beliefs.dart';
+import '../../beliefs/viewmodels/beliefs_view_view_model.dart';
+import 'beliefs_tree/key_provider.dart';
+import 'beliefs_tree/primitives/tree_controller.dart';
+import 'beliefs_tree/primitives/tree_node.dart';
+import 'beliefs_tree/widgets/tree_view.dart';
 
-class AppStateView extends StatelessWidget {
+class BeliefsView extends StatelessWidget {
   final _keyProvider = KeyProvider();
   final _controller = TreeController(allNodesExpanded: false);
 
-  AppStateView({super.key});
+  BeliefsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return StreamOfConsciousness<IntrospectionBeliefs, AppStateViewViewModel>(
+    return StreamOfConsciousness<IntrospectionBeliefs, BeliefsViewViewModel>(
         infer: (state) =>
-            AppStateViewViewModel(state.selectedState, state.previousState),
+            BeliefsViewViewModel(state.selectedState, state.previousState),
         builder: (context, vm) {
           return Center(
             child: TreeView(

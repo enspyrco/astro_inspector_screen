@@ -10,23 +10,22 @@ class IntrospectionHabit<T extends CoreBeliefs> extends Habit<T> {
 
   @override
   void call(BeliefSystem beliefSystem, Cognition cognition) async {
-    // Emit json describing the mission and (potential) state change on
-    // each mission.
+    // Emit json describing the cognition and (potential) belief updates.
     _controller.add({
       'data': {
-        'state': beliefSystem.beliefs.toJson(),
-        'mission': cognition.toJson()
+        'beliefs': beliefSystem.beliefs.toJson(),
+        'cognition': cognition.toJson()
           ..['id_'] = cognition.hashCode
-          ..['type_'] = cognition is Consideration ? 'async' : 'sync'
+          ..['type_'] = cognition is Consideration ? 'consider' : 'conclude'
       },
-      'type': 'astro:mission_update',
+      'type': 'perception:cognitive_process',
     });
 
     // Post an event with state change information that our
     // Flutter DevTools plugin can listen for.
-    // postEvent('astro:mission_update', {
-    //   'state': beliefSystem.state.toJson(),
-    //   'mission': mission.toJson(),
+    // postEvent('perception:cognitive_process', {
+    //   'beliefs': beliefSystem.beliefs.toJson(),
+    //   'cognition': cognition.toJson(),
     // });
   }
 }

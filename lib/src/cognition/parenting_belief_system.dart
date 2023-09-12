@@ -3,26 +3,26 @@ import 'package:abstractions/beliefs.dart';
 import 'parented_cognition.dart';
 
 /// An [AwayBeliefSystem] object is created by [BeliefSystem] on each call
-/// to [AwayMision.flightPlan] for the purpose of allowing land/launch calls
-/// inside `flightPlan` to automatically set the parent.
+/// to [Consideration.consider] for the purpose of allowing conclude/consider
+/// calls inside `consider` to automatically set the parent.
 ///
-/// The call to `launch` & `land` is just passed on to [BeliefSystem.consider] &
-/// [BeliefSystem.conclude], while setting the `parent` member of the mission.
+/// The call to `consider` & `conclude` is just passed on to [BeliefSystem.consider]
+/// & [BeliefSystem.conclude], while setting the `parent` member of the cognition.
 class ParentingBeliefSystem<S extends CoreBeliefs> implements BeliefSystem<S> {
   ParentingBeliefSystem(
-      BeliefSystem<S> beliefSystem, Consideration<S> currentMission)
+      BeliefSystem<S> beliefSystem, Consideration<S> currentConsideration)
       : _beliefSystem = beliefSystem,
-        _currentMission = currentMission;
+        _currentConsideration = currentConsideration;
   final BeliefSystem<S> _beliefSystem;
-  final Consideration<S> _currentMission;
+  final Consideration<S> _currentConsideration;
 
   @override
-  void conclude(Conclusion<S> mission) =>
-      _beliefSystem.conclude(ParentedConclusion(mission, _currentMission));
+  void conclude(Conclusion<S> conclusion) => _beliefSystem
+      .conclude(ParentedConclusion(conclusion, _currentConsideration));
 
   @override
-  Future<void> consider(Consideration<S> mission) =>
-      _beliefSystem.consider(ParentedConsideration(mission, _currentMission));
+  Future<void> consider(Consideration<S> consideration) => _beliefSystem
+      .consider(ParentedConsideration(consideration, _currentConsideration));
 
   @override
   Stream<S> get onBeliefUpdate => _beliefSystem.onBeliefUpdate;

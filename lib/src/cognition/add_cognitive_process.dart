@@ -1,39 +1,39 @@
 import 'package:json_utils/json_utils.dart';
 import 'package:abstractions/beliefs.dart';
 
-import '../state/introspection_beliefs.dart';
-import 'select_mission.dart';
+import '../beliefs/introspection_beliefs.dart';
+import 'select_cognition.dart';
 
-/// Used for adding a mission update to the list.
-/// Also sets the selected index to the new mission update.
+/// Used for adding a cognitive process to the list.
+/// Also sets the selected index to the new cognitive process.
 /// The incoming json is assumed to have the form:
-/// `{ mission: {id_ : <id>, ... }`
+/// `{ cognition: {id_ : <id>, ... }`
 class AddCognitiveProcess extends Conclusion<IntrospectionBeliefs> {
   AddCognitiveProcess(this._cognitiveProcessJson);
 
   final JsonMap _cognitiveProcessJson;
 
   int get cognitionId =>
-      (_cognitiveProcessJson['mission'] as JsonMap)['id_'] as int;
+      (_cognitiveProcessJson['cognition'] as JsonMap)['id_'] as int;
 
   JsonMap get eventJson => JsonMap.unmodifiable(_cognitiveProcessJson);
 
   @override
   IntrospectionBeliefs conclude(beliefs) {
     var newState = beliefs.copyWith(
-        missionReports: [...beliefs.missionReports, eventJson],
-        selectedIndex: beliefs.missionReports.length,
+        cognitiveProcesses: [...beliefs.cognitiveProcesses, eventJson],
+        selectedIndex: beliefs.cognitiveProcesses.length,
         indexFor: {
           ...beliefs.indexFor,
-          cognitionId: beliefs.missionReports.length
+          cognitionId: beliefs.cognitiveProcesses.length
         });
     return updateSelectedAndLineage(
-        newState, newState.missionReports.length - 1);
+        newState, newState.cognitiveProcesses.length - 1);
   }
 
   @override
   toJson() => {
-        'name_': 'Add Mission Update',
+        'name_': 'AddCognitiveProcess',
         'state_': {'event': eventJson}
       };
 }

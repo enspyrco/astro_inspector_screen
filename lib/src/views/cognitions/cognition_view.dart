@@ -3,31 +3,31 @@ import 'package:locator_for_perception/locator_for_perception.dart';
 import 'package:flutter/material.dart';
 import 'package:abstractions/beliefs.dart';
 
-import '../../cognition/select_mission.dart';
-import '../../state/introspection_beliefs.dart';
-import '../../state/viewmodels/mission_history_item_view_model.dart';
+import '../../beliefs/introspection_beliefs.dart';
+import '../../beliefs/viewmodels/cognitive_process_view_model.dart';
+import '../../cognition/select_cognition.dart';
 
-class CognitionHistoryItem extends StatelessWidget {
-  const CognitionHistoryItem({
+class CognitionView extends StatelessWidget {
+  const CognitionView({
     Key? key,
-    required this.missionName,
-    required this.missionType,
-    required this.missionState,
+    required this.cognitionName,
+    required this.cognitionType,
+    required this.cognitionValues,
     required this.index,
   }) : super(key: key);
 
-  final String missionName;
-  final String missionType;
-  final Map<String, dynamic> missionState;
+  final String cognitionName;
+  final String cognitionType;
+  final Map<String, dynamic> cognitionValues;
   final int index;
 
   @override
   Widget build(BuildContext context) {
-    var isAsync = missionType == 'async';
+    var isAsync = cognitionType == 'consider';
 
     return StreamOfConsciousness<IntrospectionBeliefs,
-        MissionHistoryItemViewModel>(infer: (state) {
-      return MissionHistoryItemViewModel(
+        CognitiveProcessViewModel>(infer: (state) {
+      return CognitiveProcessViewModel(
           index == state.selectedIndex, state.lineageFor[index]?.shapeWidgets);
     }, builder: (context, vm) {
       return Stack(
@@ -47,12 +47,12 @@ class CognitionHistoryItem extends StatelessWidget {
                         width: vm.isSelected ? 3 : 1),
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  title: Text(missionName),
+                  title: Text(cognitionName),
                   subtitle: vm.isSelected
-                      ? Text(missionState.toString())
+                      ? Text(cognitionValues.toString())
                       : Container(),
                   onTap: () => locate<BeliefSystem<IntrospectionBeliefs>>()
-                      .conclude(SelectMission(index)),
+                      .conclude(SelectCognition(index)),
                   tileColor: isAsync ? Colors.green[50] : Colors.blue[50]),
             ),
           ),

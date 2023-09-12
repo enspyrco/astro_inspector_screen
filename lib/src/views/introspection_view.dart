@@ -6,27 +6,28 @@ import 'package:locator_for_perception/locator_for_perception.dart';
 import 'package:flutter/widgets.dart';
 import 'package:abstractions/beliefs.dart';
 
-import '../../introspection.dart';
+import '../beliefs/introspection_beliefs.dart';
 import '../cognition/add_cognitive_process.dart';
 import '../cognition/remove_all.dart';
-import 'app_state_view/app_state_view.dart';
-import 'cognition_history/cognition_history_view.dart';
+import 'beliefs_view/beliefs_view.dart';
+import 'cognitions/cognitions_view.dart';
 
-/// The [MainView] lays out the [CognitionHistoryView] and [AppStateView].
+/// The [IntrospectionView] lays out the [CognitionsView] and [BeliefsView].
 ///
-/// The [MainView] takes a [Stream] of mission updates from [BeliefSystem],
-/// listens to the stream and starts an appropriate Mission (as we are also
-/// using astro for our state management) for each incoming event.
-class MainView extends StatefulWidget {
-  const MainView(this._onMissionReport, {super.key});
+/// The [IntrospectionView] takes a [Stream] of cognitive processed from the
+/// [BeliefSystem], listens to the stream and starts an appropriate Cognition
+/// (as we are also using perception for our state management) for each incoming
+/// event.
+class IntrospectionView extends StatefulWidget {
+  const IntrospectionView(this._onMissionReport, {super.key});
 
   final Stream<JsonMap>? _onMissionReport;
 
   @override
-  State<MainView> createState() => _MainViewState();
+  State<IntrospectionView> createState() => _IntrospectionViewState();
 }
 
-class _MainViewState extends State<MainView> {
+class _IntrospectionViewState extends State<IntrospectionView> {
   StreamSubscription<JsonMap>? _subscription;
 
   @override
@@ -36,10 +37,10 @@ class _MainViewState extends State<MainView> {
     if (widget._onMissionReport != null) {
       _subscription = widget._onMissionReport!.listen(
         (update) {
-          if (update['type'] == 'astro:mission_update') {
+          if (update['type'] == 'perception:cognitive_process') {
             locate<BeliefSystem<IntrospectionBeliefs>>()
                 .conclude(AddCognitiveProcess(update['data'] as JsonMap));
-          } else if (update['type'] == 'astro:remove_all') {
+          } else if (update['type'] == 'perception:remove_all') {
             locate<BeliefSystem<IntrospectionBeliefs>>().conclude(RemoveAll());
           }
         },
@@ -63,8 +64,8 @@ class _MainViewState extends State<MainView> {
         ? const Text('Not connected to app...')
         : Row(
             children: [
-              const CognitionHistoryView(),
-              AppStateView(),
+              const CognitionsView(),
+              BeliefsView(),
             ],
           );
   }

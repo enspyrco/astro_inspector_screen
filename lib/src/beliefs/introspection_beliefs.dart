@@ -6,19 +6,17 @@ import 'package:collection/collection.dart';
 
 import '../enums/lineage_shape.dart';
 
-/// The AppState for astro, named differently as the [AstroInspectorScreen] is
-/// for visualising the AppState of apps.
 class IntrospectionBeliefs implements CoreBeliefs, ErrorCorrectionConcept {
   IntrospectionBeliefs(
       {required this.error,
-      required this.missionReports,
+      required this.cognitiveProcesses,
       required this.selectedIndex,
       required this.lineageFor,
       required this.indexFor});
 
   static IntrospectionBeliefs get initial => IntrospectionBeliefs(
         error: DefaultErrorCorrectionBeliefs.initial,
-        missionReports: UnmodifiableListView([]),
+        cognitiveProcesses: UnmodifiableListView([]),
         selectedIndex: null,
         lineageFor: UnmodifiableMapView({}),
         indexFor: UnmodifiableMapView({}),
@@ -29,39 +27,39 @@ class IntrospectionBeliefs implements CoreBeliefs, ErrorCorrectionConcept {
   @override
   final DefaultErrorCorrectionBeliefs error;
 
-  /// The list of mission updates, added to each time [BeliefSystem.consider] or
+  /// The list of cognitive processes, added to each time [BeliefSystem.consider] or
   /// [BeliefSystem.conclude] is called
-  final List<JsonMap> missionReports;
+  final List<JsonMap> cognitiveProcesses;
 
   /// [selectedIndex] is a nullable int, as 'nothing selected' is a valid state
   final int? selectedIndex;
 
-  /// [indexFor] maps a mission's id to its index in the list
+  /// [indexFor] maps a cognition's id to its index in the list
   final Map<int, int> indexFor;
 
-  /// [lineageFor] maps a mission's index in the list to the appropriate lineage
+  /// [lineageFor] maps a cognition's index in the list to the appropriate lineage
   /// shape, which is drawn as part part of the list item
   final Map<int, LineageShape> lineageFor;
 
   /// Convenience getters to safely extract the current selected state and
-  /// previous state from the [missionReports]
+  /// previous state from the [cognitiveProcesses]
   JsonMap get selectedState => (selectedIndex == null)
       ? {}
-      : missionReports[selectedIndex!]['state'] as JsonMap;
+      : cognitiveProcesses[selectedIndex!]['beliefs'] as JsonMap;
   JsonMap get previousState => (selectedIndex == null || selectedIndex == 0)
       ? {}
-      : missionReports[selectedIndex! - 1]['state'] as JsonMap;
+      : cognitiveProcesses[selectedIndex! - 1]['beliefs'] as JsonMap;
 
   @override
   IntrospectionBeliefs copyWith(
       {DefaultErrorCorrectionBeliefs? error,
-      List<JsonMap>? missionReports,
+      List<JsonMap>? cognitiveProcesses,
       int? selectedIndex,
       Map<int, LineageShape>? lineageFor,
       Map<int, int>? indexFor}) {
     return IntrospectionBeliefs(
         error: error ?? this.error,
-        missionReports: missionReports ?? this.missionReports,
+        cognitiveProcesses: cognitiveProcesses ?? this.cognitiveProcesses,
         selectedIndex: selectedIndex ?? this.selectedIndex,
         indexFor: indexFor ?? this.indexFor,
         lineageFor: lineageFor ?? this.lineageFor);
@@ -69,10 +67,11 @@ class IntrospectionBeliefs implements CoreBeliefs, ErrorCorrectionConcept {
 
   @override
   JsonMap toJson() => {
-        'missionReports': (missionReports.isEmpty) ? {} : missionReports.first,
+        'cognitiveProcesses':
+            (cognitiveProcesses.isEmpty) ? {} : cognitiveProcesses.first,
         'error': error,
         'selectedIndex': selectedIndex,
         'lineageForIndex': lineageFor,
-        'indexForMissionId': indexFor
+        'indexForCognitionId': indexFor
       };
 }
