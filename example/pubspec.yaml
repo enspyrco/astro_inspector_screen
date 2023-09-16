@@ -1,0 +1,25 @@
+name: example
+description: Example for the introspection package.
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  introspection:
+    path: ../
+  percepts:
+    git: https://github.com/enspyrco/percepts
+  abstractions:
+    git: https://github.com/enspyrco/abstractions
+  locator_for_perception:
+    git: https://github.com/enspyrco/locator_for_perception
+
+dev_dependencies:
+  enspyr_lints:
+    git: https://github.com/enspyrco/enspyr_lints
+  flutter_test:
+    sdk: flutter
