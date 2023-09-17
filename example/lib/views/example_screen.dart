@@ -17,8 +17,8 @@ class _ExampleScreenState extends State<ExampleScreen> {
   void initState() {
     super.initState();
     final beliefSystem = locate<BeliefSystem<ExampleBeliefs>>();
-    beliefSystem.consider(const GettingExample());
-    beliefSystem.consider(const GettingExample());
+    beliefSystem.consider(GettingExample());
+    beliefSystem.consider(GettingExample());
   }
 
   @override

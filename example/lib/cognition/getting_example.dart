@@ -4,7 +4,7 @@ import '../beliefs/example_beliefs.dart';
 import 'example_updated.dart';
 
 class GettingExample extends Consideration<ExampleBeliefs> {
-  const GettingExample();
+  GettingExample();
 
   @override
   Future<void> consider(BeliefSystem<ExampleBeliefs> beliefSystem) async {
