@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:abstractions/beliefs.dart';
 
 import '../beliefs/introspection_beliefs.dart';
-import '../cognition/add_cognitive_process.dart';
+import '../cognition/cognitive_process_added.dart';
 import '../cognition/remove_all.dart';
 import 'beliefs_view/beliefs_view.dart';
 import 'cognitions/cognitions_list_view.dart';
@@ -39,7 +39,7 @@ class _IntrospectionViewState extends State<IntrospectionView> {
         (update) {
           if (update['type'] == 'perception:cognitive_process') {
             locate<BeliefSystem<IntrospectionBeliefs>>()
-                .conclude(AddCognitiveProcess(update['data'] as JsonMap));
+                .conclude(CognitiveProcessAdded(update['data'] as JsonMap));
           } else if (update['type'] == 'perception:remove_all') {
             locate<BeliefSystem<IntrospectionBeliefs>>().conclude(RemoveAll());
           }

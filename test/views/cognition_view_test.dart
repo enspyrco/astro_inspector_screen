@@ -1,6 +1,6 @@
 import 'package:introspection/src/beliefs/introspection_beliefs.dart';
-import 'package:introspection/src/cognition/add_cognitive_process.dart';
-import 'package:introspection/src/cognition/select_cognition.dart';
+import 'package:introspection/src/cognition/cognitive_process_added.dart';
+import 'package:introspection/src/cognition/cognition_selected.dart';
 import 'package:introspection/src/views/cognitions/cognition_view.dart';
 import 'package:json_utils/json_utils.dart';
 import 'package:test_utils_for_perception/test_utils_for_perception.dart';
@@ -39,7 +39,7 @@ void main() {
     /// Setup the [InspectorState] as if the inspected app launched a [TestAwayMission]
     /// The json injected into [AddMissionUpate] is created by the
     /// [SendMissionReportToInspector] system check.
-    harness.conclude(AddCognitiveProcess({
+    harness.conclude(CognitiveProcessAdded({
       'beliefs': IntrospectionBeliefs.initial.toJson(),
       'cognition': ExampleConsideration().toJson()
         ..['id_'] = testMission.hashCode
@@ -50,10 +50,10 @@ void main() {
 
     // check that the expected cognition was considered by the widget
     expect(harness.recordedCognitions,
-        containsA<SelectCognition>(withIndex: index));
+        containsA<CognitionSelected>(withIndex: index));
   });
 }
 
-Matcher containsA<T extends SelectCognition>({required int withIndex}) {
+Matcher containsA<T extends CognitionSelected>({required int withIndex}) {
   return contains(predicate((a) => a is T && a.index == withIndex));
 }

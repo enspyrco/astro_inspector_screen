@@ -4,10 +4,10 @@ import 'package:abstractions/beliefs.dart';
 import '../beliefs/introspection_beliefs.dart';
 import '../enums/lineage_shape.dart';
 
-class SelectCognition extends Conclusion<IntrospectionBeliefs> {
+class CognitionSelected extends Conclusion<IntrospectionBeliefs> {
   final int _index;
 
-  SelectCognition(this._index);
+  CognitionSelected(this._index);
 
   int get index => _index;
 
@@ -24,30 +24,30 @@ class SelectCognition extends Conclusion<IntrospectionBeliefs> {
       };
 }
 
-/// Used by [SelectCognition] & [AddMissionReport] to select a cognition and
-/// calculate how each list item is involved in the lineage. There are 5
-/// possibilities - in between the `origin` and the `endpoint` the list items
-/// are either a `connection` (one of the cognitions in the the lineage) or
-/// `notConnection` (not in the sequence). Any items beyond the origin have
-/// `null` and do not have any lineage drawn.
+/// Used by [CognitionSelected] and [CognitiveProcessAdded] conclusions to
+/// select a cognition and calculate how each list item is involved in the
+/// lineage. There are 5 possibilities - in between the `origin` and the
+/// `endpoint` the list items are either a `connection` (one of the cognitions
+/// in the the lineage) or `notConnection` (not in the sequence). Any items
+/// beyond the origin have `null` and do not have any lineage drawn.
 IntrospectionBeliefs updateSelectedAndLineage(
-    IntrospectionBeliefs state, int index) {
+    IntrospectionBeliefs beliefs, int index) {
   var lineageFor = <int, LineageShape>{};
 
   // Process the selected cognition
   lineageFor[index] = LineageShape.endpoint;
   int currentIndex = index;
-  var parentId = (state.cognitiveProcesses[currentIndex]['cognition']
+  var parentId = (beliefs.cognitiveProcesses[currentIndex]['cognition']
       as JsonMap)['parent_'];
   if (parentId == null) {
     // if first cognition is selected parent is null
-    return state.copyWith(selectedIndex: index, lineageFor: {});
+    return beliefs.copyWith(selectedIndex: index, lineageFor: {});
   }
-  currentIndex = state.indexFor[parentId]!;
+  currentIndex = beliefs.indexFor[parentId]!;
 
   // Move to the parent and process the cognition until there is no parent
   while (true) {
-    parentId = (state.cognitiveProcesses[currentIndex]['cognition']
+    parentId = (beliefs.cognitiveProcesses[currentIndex]['cognition']
         as JsonMap)['parent_'];
 
     if (parentId == null) {
@@ -57,7 +57,7 @@ IntrospectionBeliefs updateSelectedAndLineage(
 
     lineageFor[currentIndex] = LineageShape.connection;
 
-    currentIndex = state.indexFor[parentId]!;
+    currentIndex = beliefs.indexFor[parentId]!;
   }
 
   // Iterate over the cognitions from origin to endpoint and update anything unset
@@ -66,5 +66,5 @@ IntrospectionBeliefs updateSelectedAndLineage(
     lineageFor[i] ??= LineageShape.notConnection;
   }
 
-  return state.copyWith(selectedIndex: index, lineageFor: lineageFor);
+  return beliefs.copyWith(selectedIndex: index, lineageFor: lineageFor);
 }

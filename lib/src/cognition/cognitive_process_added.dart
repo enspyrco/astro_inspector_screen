@@ -2,14 +2,14 @@ import 'package:json_utils/json_utils.dart';
 import 'package:abstractions/beliefs.dart';
 
 import '../beliefs/introspection_beliefs.dart';
-import 'select_cognition.dart';
+import 'cognition_selected.dart';
 
-/// Used for adding a cognitive process to the list.
-/// Also sets the selected index to the new cognitive process.
+/// Used for adding a new cognitive process belief to [IntrospectionBeliefs].
+/// Also sets the selected index to that of the new cognitive process.
 /// The incoming json is assumed to have the form:
 /// `{ cognition: {id_ : <id>, ... }`
-class AddCognitiveProcess extends Conclusion<IntrospectionBeliefs> {
-  AddCognitiveProcess(this._cognitiveProcessJson);
+class CognitiveProcessAdded extends Conclusion<IntrospectionBeliefs> {
+  CognitiveProcessAdded(this._cognitiveProcessJson);
 
   final JsonMap _cognitiveProcessJson;
 
@@ -19,8 +19,8 @@ class AddCognitiveProcess extends Conclusion<IntrospectionBeliefs> {
   JsonMap get eventJson => JsonMap.unmodifiable(_cognitiveProcessJson);
 
   @override
-  IntrospectionBeliefs conclude(beliefs) {
-    var newState = beliefs.copyWith(
+  IntrospectionBeliefs conclude(IntrospectionBeliefs beliefs) {
+    var newBeliefs = beliefs.copyWith(
         cognitiveProcesses: [...beliefs.cognitiveProcesses, eventJson],
         selectedIndex: beliefs.cognitiveProcesses.length,
         indexFor: {
@@ -28,7 +28,7 @@ class AddCognitiveProcess extends Conclusion<IntrospectionBeliefs> {
           cognitionId: beliefs.cognitiveProcesses.length
         });
     return updateSelectedAndLineage(
-        newState, newState.cognitiveProcesses.length - 1);
+        newBeliefs, newBeliefs.cognitiveProcesses.length - 1);
   }
 
   @override

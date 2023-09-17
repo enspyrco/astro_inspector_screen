@@ -5,7 +5,7 @@ import 'package:abstractions/beliefs.dart';
 
 import '../../beliefs/introspection_beliefs.dart';
 import '../../beliefs/viewmodels/cognitive_process_view_model.dart';
-import '../../cognition/select_cognition.dart';
+import '../../cognition/cognition_selected.dart';
 
 class CognitionView extends StatelessWidget {
   const CognitionView({
@@ -51,7 +51,7 @@ class CognitionView extends StatelessWidget {
                 ),
                 title: Text(cognitionName),
                 onTap: () => locate<BeliefSystem<IntrospectionBeliefs>>()
-                    .conclude(SelectCognition(index)),
+                    .conclude(CognitionSelected(index)),
                 tileColor: isAsync ? Colors.green[50] : Colors.blue[50],
               ),
             ),
