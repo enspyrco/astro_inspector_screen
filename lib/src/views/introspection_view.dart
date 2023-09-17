@@ -10,9 +10,9 @@ import '../beliefs/introspection_beliefs.dart';
 import '../cognition/add_cognitive_process.dart';
 import '../cognition/remove_all.dart';
 import 'beliefs_view/beliefs_view.dart';
-import 'cognitions/cognitions_view.dart';
+import 'cognitions/cognitions_list_view.dart';
 
-/// The [IntrospectionView] lays out the [CognitionsView] and [BeliefsView].
+/// The [IntrospectionView] lays out the [CognitionsListView] and [BeliefsView].
 ///
 /// The [IntrospectionView] takes a [Stream] of cognitive processed from the
 /// [BeliefSystem], listens to the stream and starts an appropriate Cognition
@@ -64,7 +64,7 @@ class _IntrospectionViewState extends State<IntrospectionView> {
         ? const Text('Not connected to app...')
         : Row(
             children: [
-              const CognitionsView(),
+              const CognitionsListView(),
               BeliefsView(),
             ],
           );

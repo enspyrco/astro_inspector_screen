@@ -4,26 +4,24 @@ import 'package:introspection/introspection.dart';
 import 'package:locator_for_perception/locator_for_perception.dart';
 import 'package:percepts/percepts.dart';
 
-import 'example_beliefs.dart';
-import 'example_screen.dart';
+import 'beliefs/example_beliefs.dart';
+import 'views/example_screen.dart';
 
 void main() async {
+  // First check if the required dart-define has been set
   if (const bool.fromEnvironment('IN-APP-INTROSPECTION') != true) {
     throw 'The example must be run with a dart-define of \'IN-APP-INTROSPECTION\'=true set.\n'
         'One way to do so is to use the "introspection-example" VS Code launch config.';
   }
 
+  // Set up percepts
   Locator.add<Habits>(DefaultHabits());
   Locator.add<ExampleBeliefs>(ExampleBeliefs.initial);
-
-  // The following will only work when run with a dart-define setting IN-APP-INTROSPECTION=true
   initializeIntrospection<ExampleBeliefs>();
-
   final beliefSystem = DefaultBeliefSystem<ExampleBeliefs>(
       beliefs: locate<ExampleBeliefs>(),
       habits: locate<Habits>(),
       beliefSystemFactory: ParentingBeliefSystem.new);
-
   Locator.add<BeliefSystem<ExampleBeliefs>>(beliefSystem);
 
   runApp(

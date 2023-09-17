@@ -13,8 +13,9 @@ class SelectCognition extends Conclusion<IntrospectionBeliefs> {
 
   /// Select a list item and also identify the appropriate lineage to be drawn.
   @override
-  IntrospectionBeliefs conclude(state) =>
-      updateSelectedAndLineage(state, index);
+  IntrospectionBeliefs conclude(IntrospectionBeliefs beliefs) {
+    return updateSelectedAndLineage(beliefs, index);
+  }
 
   @override
   toJson() => {

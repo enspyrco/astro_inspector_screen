@@ -6,8 +6,8 @@ import 'package:json_utils/json_utils.dart';
 import '../../beliefs/introspection_beliefs.dart';
 import 'cognition_view.dart';
 
-class CognitionsView extends StatelessWidget {
-  const CognitionsView({super.key});
+class CognitionsListView extends StatelessWidget {
+  const CognitionsListView({super.key});
 
   @override
   Widget build(BuildContext context) {

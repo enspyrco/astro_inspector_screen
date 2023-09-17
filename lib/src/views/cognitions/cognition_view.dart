@@ -33,27 +33,27 @@ class CognitionView extends StatelessWidget {
       return Stack(
         children: [
           SizedBox(
-            height: 80,
+            height: 55,
             child: Padding(
               padding: EdgeInsets.only(
-                  left: isAsync ? 5 : 20,
-                  top: 5,
-                  right: isAsync ? 20 : 5,
-                  bottom: 5),
+                left: isAsync ? 5 : 20,
+                top: 5,
+                right: isAsync ? 20 : 5,
+                bottom: 5,
+              ),
               child: ListTile(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                        color: isAsync ? Colors.green : Colors.blue,
-                        width: vm.isSelected ? 3 : 1),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  title: Text(cognitionName),
-                  subtitle: vm.isSelected
-                      ? Text(cognitionValues.toString())
-                      : Container(),
-                  onTap: () => locate<BeliefSystem<IntrospectionBeliefs>>()
-                      .conclude(SelectCognition(index)),
-                  tileColor: isAsync ? Colors.green[50] : Colors.blue[50]),
+                dense: true,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                      color: isAsync ? Colors.green : Colors.blue,
+                      width: vm.isSelected ? 3 : 1),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                title: Text(cognitionName),
+                onTap: () => locate<BeliefSystem<IntrospectionBeliefs>>()
+                    .conclude(SelectCognition(index)),
+                tileColor: isAsync ? Colors.green[50] : Colors.blue[50],
+              ),
             ),
           ),
           if (vm.lineageShapes != null) ...vm.lineageShapes!
