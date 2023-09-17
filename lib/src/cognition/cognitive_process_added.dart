@@ -23,7 +23,7 @@ class CognitiveProcessAdded extends Conclusion<IntrospectionBeliefs> {
     var newBeliefs = beliefs.copyWith(
         cognitiveProcesses: [...beliefs.cognitiveProcesses, eventJson],
         selectedIndex: beliefs.cognitiveProcesses.length,
-        indexFor: {
+        indexForId: {
           ...beliefs.indexForId,
           cognitionId: beliefs.cognitiveProcesses.length
         });

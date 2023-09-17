@@ -41,7 +41,7 @@ IntrospectionBeliefs updateSelectedAndLineage(
       as JsonMap)['parent_'];
   if (parentId == null) {
     // if first cognition is selected parent is null
-    return beliefs.copyWith(selectedIndex: selectedIndex, lineageFor: {});
+    return beliefs.copyWith(selectedIndex: selectedIndex, lineageForIndex: {});
   }
   currentIndex = beliefs.indexForId[parentId]!;
 
@@ -67,5 +67,5 @@ IntrospectionBeliefs updateSelectedAndLineage(
   }
 
   return beliefs.copyWith(
-      selectedIndex: selectedIndex, lineageFor: lineageForIndex);
+      selectedIndex: selectedIndex, lineageForIndex: lineageForIndex);
 }
