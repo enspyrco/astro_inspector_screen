@@ -35,7 +35,7 @@ class CognitionsListView extends StatelessWidget {
                               cognitionData['type_'] as String? ?? '',
                           cognitionValues:
                               cognitionData['state_'] as JsonMap? ?? {},
-                          index: index,
+                          cognitionIndex: index,
                         );
                       });
                 }),

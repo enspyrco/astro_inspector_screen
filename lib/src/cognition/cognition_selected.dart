@@ -31,19 +31,19 @@ class CognitionSelected extends Conclusion<IntrospectionBeliefs> {
 /// in the the lineage) or `notConnection` (not in the sequence). Any items
 /// beyond the origin have `null` and do not have any lineage drawn.
 IntrospectionBeliefs updateSelectedAndLineage(
-    IntrospectionBeliefs beliefs, int index) {
-  var lineageFor = <int, LineageShape>{};
+    IntrospectionBeliefs beliefs, int selectedIndex) {
+  var lineageForIndex = <int, LineageShape>{};
 
   // Process the selected cognition
-  lineageFor[index] = LineageShape.endpoint;
-  int currentIndex = index;
+  lineageForIndex[selectedIndex] = LineageShape.endpoint;
+  int currentIndex = selectedIndex;
   var parentId = (beliefs.cognitiveProcesses[currentIndex]['cognition']
       as JsonMap)['parent_'];
   if (parentId == null) {
     // if first cognition is selected parent is null
-    return beliefs.copyWith(selectedIndex: index, lineageFor: {});
+    return beliefs.copyWith(selectedIndex: selectedIndex, lineageFor: {});
   }
-  currentIndex = beliefs.indexFor[parentId]!;
+  currentIndex = beliefs.indexForId[parentId]!;
 
   // Move to the parent and process the cognition until there is no parent
   while (true) {
@@ -51,20 +51,21 @@ IntrospectionBeliefs updateSelectedAndLineage(
         as JsonMap)['parent_'];
 
     if (parentId == null) {
-      lineageFor[currentIndex] = LineageShape.origin;
+      lineageForIndex[currentIndex] = LineageShape.origin;
       break;
     }
 
-    lineageFor[currentIndex] = LineageShape.connection;
+    lineageForIndex[currentIndex] = LineageShape.connection;
 
-    currentIndex = beliefs.indexFor[parentId]!;
+    currentIndex = beliefs.indexForId[parentId]!;
   }
 
   // Iterate over the cognitions from origin to endpoint and update anything unset
   // to `notConnection`.
-  for (int i = index; i != currentIndex; i--) {
-    lineageFor[i] ??= LineageShape.notConnection;
+  for (int i = selectedIndex; i != currentIndex; i--) {
+    lineageForIndex[i] ??= LineageShape.notConnection;
   }
 
-  return beliefs.copyWith(selectedIndex: index, lineageFor: lineageFor);
+  return beliefs.copyWith(
+      selectedIndex: selectedIndex, lineageFor: lineageForIndex);
 }

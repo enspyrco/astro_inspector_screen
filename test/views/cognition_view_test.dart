@@ -19,7 +19,7 @@ void main() {
       cognitionName: cognitionName,
       cognitionType: cognitionType,
       cognitionValues: cognitionValues,
-      index: index,
+      cognitionIndex: index,
     );
 
     var harness = WidgetTestHarness(

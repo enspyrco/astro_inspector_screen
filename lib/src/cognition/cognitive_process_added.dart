@@ -24,7 +24,7 @@ class CognitiveProcessAdded extends Conclusion<IntrospectionBeliefs> {
         cognitiveProcesses: [...beliefs.cognitiveProcesses, eventJson],
         selectedIndex: beliefs.cognitiveProcesses.length,
         indexFor: {
-          ...beliefs.indexFor,
+          ...beliefs.indexForId,
           cognitionId: beliefs.cognitiveProcesses.length
         });
     return updateSelectedAndLineage(

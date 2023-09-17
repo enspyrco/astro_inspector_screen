@@ -13,13 +13,13 @@ class CognitionView extends StatelessWidget {
     required this.cognitionName,
     required this.cognitionType,
     required this.cognitionValues,
-    required this.index,
+    required this.cognitionIndex,
   }) : super(key: key);
 
   final String cognitionName;
   final String cognitionType;
   final Map<String, dynamic> cognitionValues;
-  final int index;
+  final int cognitionIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,8 @@ class CognitionView extends StatelessWidget {
 
     return StreamOfConsciousness<IntrospectionBeliefs,
         CognitiveProcessViewModel>(infer: (state) {
-      return CognitiveProcessViewModel(
-          index == state.selectedIndex, state.lineageFor[index]?.shapeWidgets);
+      return CognitiveProcessViewModel(cognitionIndex == state.selectedIndex,
+          state.lineageForIndex[cognitionIndex]?.shapeWidgets);
     }, builder: (context, vm) {
       return Stack(
         children: [
@@ -51,7 +51,7 @@ class CognitionView extends StatelessWidget {
                 ),
                 title: Text(cognitionName),
                 onTap: () => locate<BeliefSystem<IntrospectionBeliefs>>()
-                    .conclude(CognitionSelected(index)),
+                    .conclude(CognitionSelected(cognitionIndex)),
                 tileColor: isAsync ? Colors.green[50] : Colors.blue[50],
               ),
             ),

@@ -11,15 +11,15 @@ class IntrospectionBeliefs implements CoreBeliefs, ErrorCorrectionConcept {
       {required this.error,
       required this.cognitiveProcesses,
       required this.selectedIndex,
-      required this.lineageFor,
-      required this.indexFor});
+      required this.lineageForIndex,
+      required this.indexForId});
 
   static IntrospectionBeliefs get initial => IntrospectionBeliefs(
         error: DefaultErrorCorrectionBeliefs.initial,
         cognitiveProcesses: UnmodifiableListView([]),
         selectedIndex: null,
-        lineageFor: UnmodifiableMapView({}),
-        indexFor: UnmodifiableMapView({}),
+        lineageForIndex: UnmodifiableMapView({}),
+        indexForId: UnmodifiableMapView({}),
       );
 
   /// If there are errors (eg. decoding invalid json) we save an error message
@@ -34,12 +34,12 @@ class IntrospectionBeliefs implements CoreBeliefs, ErrorCorrectionConcept {
   /// [selectedIndex] is a nullable int, as 'nothing selected' is a valid state
   final int? selectedIndex;
 
-  /// [indexFor] maps a cognition's id to its index in the list
-  final Map<int, int> indexFor;
+  /// [indexForId] maps a cognition's id to its index in the list
+  final Map<int, int> indexForId;
 
-  /// [lineageFor] maps a cognition's index in the list to the appropriate lineage
-  /// shape, which is drawn as part part of the list item
-  final Map<int, LineageShape> lineageFor;
+  /// [lineageForIndex] maps a cognition's index in the list to the appropriate
+  /// lineage shape, which is drawn as part part of the list item
+  final Map<int, LineageShape> lineageForIndex;
 
   /// Convenience getters to safely extract the current selected state and
   /// previous state from the [cognitiveProcesses]
@@ -55,14 +55,14 @@ class IntrospectionBeliefs implements CoreBeliefs, ErrorCorrectionConcept {
       {DefaultErrorCorrectionBeliefs? error,
       List<JsonMap>? cognitiveProcesses,
       int? selectedIndex,
-      Map<int, LineageShape>? lineageFor,
-      Map<int, int>? indexFor}) {
+      Map<int, LineageShape>? lineageForIndex,
+      Map<int, int>? indexForId}) {
     return IntrospectionBeliefs(
         error: error ?? this.error,
         cognitiveProcesses: cognitiveProcesses ?? this.cognitiveProcesses,
         selectedIndex: selectedIndex ?? this.selectedIndex,
-        indexFor: indexFor ?? this.indexFor,
-        lineageFor: lineageFor ?? this.lineageFor);
+        indexForId: indexForId ?? this.indexForId,
+        lineageForIndex: lineageForIndex ?? this.lineageForIndex);
   }
 
   @override
@@ -71,7 +71,7 @@ class IntrospectionBeliefs implements CoreBeliefs, ErrorCorrectionConcept {
             (cognitiveProcesses.isEmpty) ? {} : cognitiveProcesses.first,
         'error': error,
         'selectedIndex': selectedIndex,
-        'lineageForIndex': lineageFor,
-        'indexForCognitionId': indexFor
+        'lineageForIndex': lineageForIndex,
+        'indexForCognitionId': indexForId
       };
 }
