@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "name": "introspection-example",
+      "request": "launch",
+      "type": "dart",
+      "program": "${workspaceFolder:introspection}/example/lib/main.dart",
+      "toolArgs": [
+        "--dart-define",
+        "IN-APP-INTROSPECTION=true"
+      ]
+    },
+  ]
+}

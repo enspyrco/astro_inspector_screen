@@ -1,0 +1,17 @@
+dependency_overrides:
+# where are we? flutter/utils/perception/introspection/<here>
+  percepts:
+    path: ../../percepts
+  abstractions:
+    path: ../../abstractions
+  locator_for_perception:
+    path: ../../locator_for_perception
+  test_utils_for_perception:
+    path: ../../test_utils_for_perception
+  error_correction_in_perception:
+    path: ../../error_correction_in_perception
+
+  # enspyr_lints:
+  #   path: 
+  # json_utils:
+  #   path: 
