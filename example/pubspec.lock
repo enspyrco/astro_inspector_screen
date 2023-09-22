@@ -53,7 +53,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: ae8f94765ed7c2b8082be523b6f89b051ea0a367
+      resolved-ref: "3c544eb768ec35ba81efcbcd27595a2f8ffbd12f"
       url: "https://github.com/enspyrco/enspyr_lints"
     source: git
     version: "0.0.0-a1"

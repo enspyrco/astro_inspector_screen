@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   
   collection: ^1.17.1
+  flutter_fancy_tree_view: ^1.3.0
   
   percepts:
     git: https://github.com/enspyrco/percepts
@@ -35,8 +36,7 @@ dev_dependencies:
     git: https://github.com/enspyrco/test_utils_for_perception
 
 flutter:
-   fonts:
+  fonts:
     - family:  IconsFontFamily
       fonts:
-       - asset: fonts/IconsFont.ttf  
-  
+        - asset: fonts/IconsFont.ttf
