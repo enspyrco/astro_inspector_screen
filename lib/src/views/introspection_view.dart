@@ -9,7 +9,7 @@ import 'package:abstractions/beliefs.dart';
 import '../beliefs/introspection_beliefs.dart';
 import '../cognition/cognitive_process_added.dart';
 import '../cognition/remove_all.dart';
-import 'beliefs_view/beliefs_view.dart';
+import 'beliefs/beliefs_view.dart';
 import 'cognitions/cognitions_list_view.dart';
 
 /// The [IntrospectionView] lays out the [CognitionsListView] and [BeliefsView].
@@ -62,9 +62,9 @@ class _IntrospectionViewState extends State<IntrospectionView> {
   Widget build(BuildContext context) {
     return (widget._onMissionReport == null)
         ? const Text('Not connected to app...')
-        : Row(
+        : const Row(
             children: [
-              const CognitionsListView(),
+              CognitionsListView(),
               BeliefsView(),
             ],
           );
