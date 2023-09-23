@@ -17,7 +17,8 @@ class _BeliefsViewState extends State<BeliefsView> {
   @override
   Widget build(BuildContext context) {
     return StreamOfConsciousness<IntrospectionBeliefs, BeliefsViewModel>(
-      infer: (beliefs) => BeliefsViewModel(beliefs.selectedState),
+      infer: (beliefs) =>
+          BeliefsViewModel(beliefs.selectedState, beliefs.previousState),
       builder: (context, viewModel) {
         final treeController = TreeController<BeliefNode>(
           roots: viewModel.roots,
@@ -33,7 +34,68 @@ class _BeliefsViewState extends State<BeliefsView> {
                 onTap: () => treeController.toggleExpansion(entry.node),
                 child: TreeIndentation(
                   entry: entry,
-                  child: Text(entry.node.title ?? '?'),
+                  child: switch (entry.node.category) {
+                    NodeCategory.value => Text(
+                        '${entry.node.value}',
+                        style: const TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    NodeCategory.valueAdded => Text(
+                        '${entry.node.value}',
+                        style: const TextStyle(
+                          color: Colors.green,
+                        ),
+                      ),
+                    NodeCategory.valueRemoved => Text(
+                        '${entry.node.value}',
+                        style: const TextStyle(
+                          color: Colors.red,
+                        ),
+                      ),
+                    NodeCategory.object => Text(
+                        '${entry.node.value}',
+                        style: const TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    NodeCategory.objectAdded => Text(
+                        '${entry.node.value}',
+                        style: const TextStyle(
+                          color: Colors.green,
+                        ),
+                      ),
+                    NodeCategory.objectRemoved => Text(
+                        '${entry.node.value}',
+                        style: const TextStyle(
+                          color: Colors.red,
+                        ),
+                      ),
+                    NodeCategory.list => Text(
+                        '${entry.node.value}',
+                        style: const TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    NodeCategory.listAdded => Text(
+                        '${entry.node.value}',
+                        style: const TextStyle(
+                          color: Colors.green,
+                        ),
+                      ),
+                    NodeCategory.listRemoved => Text(
+                        '${entry.node.value}',
+                        style: const TextStyle(
+                          color: Colors.red,
+                        ),
+                      ),
+                    _ => Text(
+                        '${entry.node.value}',
+                        style: const TextStyle(
+                          color: Colors.orange,
+                        ),
+                      ),
+                  },
                 ),
               );
             },
