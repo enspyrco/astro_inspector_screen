@@ -2,7 +2,7 @@ import 'package:json_utils/json_utils.dart';
 import 'package:abstractions/beliefs.dart';
 
 import '../beliefs/introspection_beliefs.dart';
-import '../enums/lineage_shape.dart';
+import '../views/enums/lineage_shape.dart';
 
 class CognitionSelected extends Conclusion<IntrospectionBeliefs> {
   final int _index;
