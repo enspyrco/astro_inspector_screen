@@ -4,13 +4,14 @@ version: 0.0.0-a1
 publish_to: none
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.2.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   
-  collection: ^1.17.1
+  collection: ^1.18.0
+  flutter_fancy_tree_view: ^1.4.1
   
   percepts:
     git: https://github.com/enspyrco/percepts
@@ -35,8 +36,7 @@ dev_dependencies:
     git: https://github.com/enspyrco/test_utils_for_perception
 
 flutter:
-   fonts:
+  fonts:
     - family:  IconsFontFamily
       fonts:
-       - asset: fonts/IconsFont.ttf  
-  
+        - asset: fonts/IconsFont.ttf

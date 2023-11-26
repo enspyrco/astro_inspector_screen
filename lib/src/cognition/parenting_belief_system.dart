@@ -2,7 +2,7 @@ import 'package:abstractions/beliefs.dart';
 
 import 'parented_cognition.dart';
 
-/// An [AwayBeliefSystem] object is created by [BeliefSystem] on each call
+/// A [ParentingBeliefSystem] object is created by [BeliefSystem] on each call
 /// to [Consideration.consider] for the purpose of allowing conclude/consider
 /// calls inside `consider` to automatically set the parent.
 ///

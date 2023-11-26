@@ -4,7 +4,7 @@ import 'package:abstractions/beliefs.dart';
 import 'package:abstractions/error_correction.dart';
 import 'package:collection/collection.dart';
 
-import '../enums/lineage_shape.dart';
+import '../views/enums/lineage_shape.dart';
 
 class IntrospectionBeliefs implements CoreBeliefs, ErrorCorrectionConcept {
   IntrospectionBeliefs(

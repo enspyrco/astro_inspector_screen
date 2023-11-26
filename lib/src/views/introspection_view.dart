@@ -7,9 +7,9 @@ import 'package:flutter/widgets.dart';
 import 'package:abstractions/beliefs.dart';
 
 import '../beliefs/introspection_beliefs.dart';
+import '../cognition/all_removed.dart';
 import '../cognition/cognitive_process_added.dart';
-import '../cognition/remove_all.dart';
-import 'beliefs_view/beliefs_view.dart';
+import 'beliefs/beliefs_view.dart';
 import 'cognitions/cognitions_list_view.dart';
 
 /// The [IntrospectionView] lays out the [CognitionsListView] and [BeliefsView].
@@ -19,9 +19,9 @@ import 'cognitions/cognitions_list_view.dart';
 /// (as we are also using perception for our state management) for each incoming
 /// event.
 class IntrospectionView extends StatefulWidget {
-  const IntrospectionView(this._onMissionReport, {super.key});
+  const IntrospectionView(this._onCognitiveProcess, {super.key});
 
-  final Stream<JsonMap>? _onMissionReport;
+  final Stream<JsonMap>? _onCognitiveProcess;
 
   @override
   State<IntrospectionView> createState() => _IntrospectionViewState();
@@ -34,14 +34,14 @@ class _IntrospectionViewState extends State<IntrospectionView> {
   void initState() {
     super.initState();
 
-    if (widget._onMissionReport != null) {
-      _subscription = widget._onMissionReport!.listen(
+    if (widget._onCognitiveProcess != null) {
+      _subscription = widget._onCognitiveProcess!.listen(
         (update) {
           if (update['type'] == 'perception:cognitive_process') {
             locate<BeliefSystem<IntrospectionBeliefs>>()
                 .conclude(CognitiveProcessAdded(update['data'] as JsonMap));
           } else if (update['type'] == 'perception:remove_all') {
-            locate<BeliefSystem<IntrospectionBeliefs>>().conclude(RemoveAll());
+            locate<BeliefSystem<IntrospectionBeliefs>>().conclude(AllRemoved());
           }
         },
         onError: (Object error, StackTrace trace) =>
@@ -60,11 +60,11 @@ class _IntrospectionViewState extends State<IntrospectionView> {
 
   @override
   Widget build(BuildContext context) {
-    return (widget._onMissionReport == null)
+    return (widget._onCognitiveProcess == null)
         ? const Text('Not connected to app...')
-        : Row(
+        : const Row(
             children: [
-              const CognitionsListView(),
+              CognitionsListView(),
               BeliefsView(),
             ],
           );
